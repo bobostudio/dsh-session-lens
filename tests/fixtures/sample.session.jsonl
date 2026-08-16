@@ -1,0 +1,29 @@
+{"type":"session","version":0,"id":"test-session-001","createdAt":1784973850000,"cwd":"D:\\work\\proj"}
+{"type":"turn/start","seq":0,"time":1784973850100,"data":{"turn":1,"trigger":{"kind":"message","source":{"kind":"user"}}}}
+{"type":"user/message","seq":1,"time":1784973850102,"data":{"content":[{"type":"text","text":"帮我在 D:\\work\\proj\\src 下新建 hello.ts，然后运行它"}],"source":{"kind":"user"}},"surfaceOp":"append"}
+{"type":"session/title","seq":2,"time":1784973850105,"data":{"title":"新建并运行 hello.ts","messageSeqs":[1],"source":{"kind":"fallback"}}}
+{"type":"step/start","seq":3,"time":1784973850160,"data":{"turn":1,"step":1}}
+{"type":"request/header","seq":4,"time":1784973850165,"data":{"header":{"config":{"provider":"deepseek-official","model":"deepseek-v4-flash"},"system":"SECRET-SYSTEM-PROMPT-DO-NOT-LEAK","tools":"SECRET-TOOLS-LIST"},"reason":"initial"}}
+{"type":"assistant/chunk","seq":5,"time":1784973850900,"data":{"turn":1,"step":1,"chunk":{"type":"block-start","index":0,"blockType":"reasoning"}}}
+{"type":"reasoning-chunks","seq0":6,"time0":1784973850901,"data":{"turn":1,"step":1,"index":0,"dt":[100,50],"texts":["用户","要创建文件。"]}}
+{"type":"assistant/message","seq":8,"time":1784973851200,"data":{"turn":1,"step":1,"content":[{"type":"reasoning","text":"用户要创建文件。"},{"type":"tool-call","id":"call_01_write","name":"write","arguments":"{\"path\": \"D:\\\\work\\\\proj\\\\src\\\\hello.ts\", \"content\": \"console.log('hi')\"}"}],"provenance":{"provider":"deepseek-official","model":"deepseek-v4-flash"},"usage":{"inputTokens":1000,"outputTokens":120,"cacheReadTokens":4000,"cacheWriteTokens":500,"reasoningTokens":30}},"sourceEventSeqs":[5,6,7],"surfaceOp":"append"}
+{"type":"tool/call","seq":9,"time":1784973851210,"data":{"turn":1,"step":1,"callId":"call_01_write","name":"write","arguments":"{\"path\": \"D:\\\\work\\\\proj\\\\src\\\\hello.ts\", \"content\": \"console.log('hi')\"}"}}
+{"type":"tool/result","seq":10,"time":1784973851310,"data":{"turn":1,"step":1,"callId":"call_01_write","content":[{"type":"text","text":"File written: D:\\work\\proj\\src\\hello.ts"}],"isError":false},"sourceEventSeqs":[9],"surfaceOp":"append"}
+{"type":"step/end","seq":11,"time":1784973851320,"data":{"turn":1,"step":1}}
+{"type":"step/start","seq":12,"time":1784973851330,"data":{"turn":1,"step":2}}
+{"type":"assistant/message","seq":13,"time":1784973851800,"data":{"turn":1,"step":2,"content":[{"type":"text","text":"已创建 D:\\work\\proj\\src\\hello.ts。"}],"provenance":{"provider":"deepseek-official","model":"deepseek-v4-flash"},"usage":{"inputTokens":800,"outputTokens":40,"cacheReadTokens":4500,"reasoningTokens":10}},"sourceEventSeqs":[12],"surfaceOp":"append"}
+{"type":"step/end","seq":14,"time":1784973851810,"data":{"turn":1,"step":2}}
+{"type":"turn/end","seq":15,"time":1784973851820,"data":{"turn":1,"reason":{"kind":"completed"}}}
+{"type":"turn/start","seq":16,"time":1784973860000,"data":{"turn":2,"trigger":{"kind":"message","source":{"kind":"user"}}}}
+{"type":"user/message","seq":17,"time":1784973860005,"data":{"content":[{"type":"text","text":"运行它，顺便看看这个图"},{"type":"image","attachmentId":"sha256:deadbeef","mediaType":"image/png","bytes":1234,"width":10,"height":10,"name":"pic.png"}],"source":{"kind":"user"}},"surfaceOp":"append"}
+{"type":"step/start","seq":18,"time":1784973860100,"data":{"turn":2,"step":1}}
+{"type":"llm/retry-started","seq":19,"time":1784973860200,"data":{"turn":2,"step":1,"attempt":2,"reason":"rate-limit"}}
+{"type":"approval/asked","seq":20,"time":1784973860300,"data":{"id":"ap1","toolName":"bash","callId":"call_02_bash","reason":"需要运行 shell 命令"}}
+{"type":"approval/decided","seq":21,"time":1784973865000,"data":{"id":"ap1","outcome":"approved"}}
+{"type":"assistant/message","seq":22,"time":1784973866000,"data":{"turn":2,"step":1,"content":[{"type":"tool-call","id":"call_02_bash","name":"bash","arguments":"{\"command\": \"node D:\\\\work\\\\proj\\\\src\\\\hello.ts\"}"}],"provenance":{"provider":"deepseek-official","model":"deepseek-v4-flash"},"usage":{"inputTokens":2000,"outputTokens":60,"cacheReadTokens":6000,"reasoningTokens":5}},"sourceEventSeqs":[18],"surfaceOp":"append"}
+{"type":"tool/call","seq":23,"time":1784973866010,"data":{"turn":2,"step":1,"callId":"call_02_bash","name":"bash","arguments":"{\"command\": \"node D:\\\\work\\\\proj\\\\src\\\\hello.ts\"}"}}
+{"type":"tool/result","seq":24,"time":1784973869010,"data":{"turn":2,"step":1,"callId":"call_02_bash","content":[{"type":"text","text":"LONG-OUTPUT-START PLACEHOLDER LONG-OUTPUT-END"}],"isError":true},"sourceEventSeqs":[23],"surfaceOp":"append"}
+{"type":"subagent/descriptor","seq":25,"time":1784973869100,"data":{"id":"sub1","role":"explorer","state":"running"}}
+{"type":"compaction/summary","seq":26,"time":1784973870000,"data":{"compactionId":"c1","summary":[{"type":"text","text":"前文摘要：创建了 hello.ts"}],"shadowedRange":[0,15],"shadowedSeqs":[0,15],"shadowedTokenCount":9000,"provider":"deepseek-official","model":"deepseek-v4-flash","usage":{"inputTokens":3000,"outputTokens":200}}}
+{"type":"step/end","seq":27,"time":1784973870100,"data":{"turn":2,"step":1}}
+{"type":"turn/end","seq":28,"time":1784973870200,"data":{"turn":2,"reason":{"kind":"completed"}}}

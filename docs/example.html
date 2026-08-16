@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:;">
+<title>新建并运行 hello.ts · 会话洞察报告</title>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;padding:32px 16px;font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:#f6f7f9;color:#1c1f24;line-height:1.65}
+main{max-width:860px;margin:0 auto}
+header.report{margin-bottom:24px}
+h1{font-size:22px;margin:0 0 8px}
+h2{font-size:15px;margin:22px 0 8px;color:#5a6472}
+.meta{color:#5a6472;font-size:13px;display:flex;flex-wrap:wrap;gap:6px 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{background:#fff;border:1px solid #e3e7ec;border-radius:10px;padding:8px 14px;min-width:96px}
+.chip-value{font-size:17px;font-weight:650;font-variant-numeric:tabular-nums}
+.chip-label{font-size:11px;color:#5a6472}
+.token-bar{width:100%;border-radius:6px;overflow:hidden;display:block;background:#e9edf1}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-size:12px;color:#5a6472}
+.legend-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e3e7ec;border-radius:10px;overflow:hidden;font-size:13px}
+th,td{text-align:left;padding:7px 12px;border-bottom:1px solid #eef1f4;font-variant-numeric:tabular-nums}
+th{background:#f0f2f5;font-weight:600;color:#455060;font-size:12px}
+tr:last-child td{border-bottom:none}
+code{background:#eef1f4;border-radius:5px;padding:1px 6px;font-size:12px}
+.err{color:#d6453d}
+.activity{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:#455060}
+.msg{margin:10px 0;padding:12px 16px;border-radius:12px;background:#fff;border:1px solid #e3e7ec}
+.msg.user{background:#eef4ff;border-color:#d5e3fb}
+.msg.tool,.msg.result{background:#fafbfc}
+.msg.failed{border-color:#f0c8c5}
+.msg-role{font-size:12px;font-weight:650;color:#5a6472;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.msg-text{white-space:pre-wrap;word-break:break-word;font-size:14px}
+.fold{margin:6px 0}
+.fold summary{cursor:pointer;font-size:12px;color:#4c8dff;user-select:none}
+.fold pre{margin:8px 0 2px;padding:10px 12px;background:#f0f2f5;border-radius:8px;font-size:12px;white-space:pre-wrap;word-break:break-all;max-height:420px;overflow:auto}
+.fold.reasoning pre{color:#5a6472;font-style:italic}
+.tool-badge{display:inline-block;background:#e8eeff;color:#3a63c8;border-radius:6px;padding:2px 8px;font-size:12px;margin-bottom:4px}
+.turn-divider{display:flex;align-items:center;gap:12px;margin:22px 0 6px;color:#8a94a1;font-size:12px;font-weight:650;letter-spacing:.08em;text-transform:uppercase}
+.turn-divider::before,.turn-divider::after{content:"";flex:1;border-top:1px solid #dfe4ea}
+.marker{margin:6px 0;padding:6px 12px;font-size:12px;color:#5a6472;background:#f0f2f5;border-radius:8px;display:inline-block}
+footer{margin-top:28px;padding-top:14px;border-top:1px solid #e3e7ec;font-size:12px;color:#8a94a1}
+footer a{color:#4c8dff;text-decoration:none}
+.privacy{margin-top:6px}
+@media (prefers-color-scheme:dark){
+body{background:#14161a;color:#dde2e8}
+.chip,table,.msg{background:#1c1f24;border-color:#2c313a}
+th{background:#22262d;color:#a7b0bc}
+td{border-color:#262b33}
+code{background:#262b33}
+.msg.user{background:#17233a;border-color:#24365c}
+.msg.tool,.msg.result{background:#191c21}
+.msg.failed{border-color:#5c2f2c}
+.fold pre{background:#22262d}
+.marker{background:#22262d;color:#a7b0bc}
+.turn-divider::before,.turn-divider::after{border-color:#2c313a}
+footer{border-color:#2c313a}
+.token-bar{background:#262b33}
+h2,.meta,.chip-label,.msg-role,.activity{color:#8a94a1}
+}</style>
+</head>
+<body>
+<main>
+<header class="report">
+<h1>新建并运行 hello.ts</h1>
+<div class="meta">
+<span>模型: deepseek-v4-flash</span>
+<span>状态: completed</span>
+<span>创建时间: 2026年7月25日 18:04:10</span>
+<span>时长: 0:20</span>
+<span>Turn: 2</span>
+<span>消息: 5</span>
+<span>事件数: 29</span>
+</div>
+</header>
+<section class="stats">
+<h2>Token 用量</h2>
+<div class="chips">
+<div class="chip"><div class="chip-value">19.0k</div><div class="chip-label">合计</div></div>
+<div class="chip"><div class="chip-value">3.80k</div><div class="chip-label">输入</div></div>
+<div class="chip"><div class="chip-value">220</div><div class="chip-label">输出</div></div>
+<div class="chip"><div class="chip-value">14.5k</div><div class="chip-label">缓存读</div></div>
+<div class="chip"><div class="chip-value">500</div><div class="chip-label">缓存写</div></div>
+<div class="chip"><div class="chip-value">45</div><div class="chip-label">思维链</div></div>
+<div class="chip"><div class="chip-value">3.20k</div><div class="chip-label">压缩摘要调用</div></div>
+</div>
+<svg viewBox="0 0 720 22" class="token-bar" role="img" aria-label="Token 用量"><rect x="0" y="0" width="144" height="22" fill="#4c8dff"><title>输入 3.80k</title></rect><rect x="144" y="0" width="8" height="22" fill="#34c98e"><title>输出 220</title></rect><rect x="152" y="0" width="548" height="22" fill="#8b7cf6"><title>缓存读 14.5k</title></rect><rect x="700" y="0" width="19" height="22" fill="#c9a0f6"><title>缓存写 500</title></rect><rect x="719" y="0" width="1" height="22" fill="#f6a35c"><title>思维链 45</title></rect></svg><div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#4c8dff"></span>输入 3.80k</span><span class="legend-item"><span class="legend-dot" style="background:#34c98e"></span>输出 220</span><span class="legend-item"><span class="legend-dot" style="background:#8b7cf6"></span>缓存读 14.5k</span><span class="legend-item"><span class="legend-dot" style="background:#c9a0f6"></span>缓存写 500</span><span class="legend-item"><span class="legend-dot" style="background:#f6a35c"></span>思维链 45</span></div>
+<h2>按 Turn 分解</h2>
+<table><thead><tr><th>Turn</th><th>时长</th><th>输入+缓存读</th><th>输出</th><th>思维链</th><th>工具调用</th></tr></thead>
+<tbody><tr>
+<td>#1</td>
+<td>0:02</td>
+<td>10.8k</td>
+<td>160</td>
+<td>40</td>
+<td>1</td>
+</tr><tr>
+<td>#2</td>
+<td>0:10</td>
+<td>8.00k</td>
+<td>60</td>
+<td>5</td>
+<td>1 <span class="err">(1 错误)</span></td>
+</tr></tbody></table>
+<h2>工具统计</h2>
+<table><thead><tr><th>工具</th><th>调用</th><th>错误</th><th>OK%</th><th>时长</th></tr></thead>
+<tbody><tr>
+<td><code>write</code></td>
+<td>1</td>
+<td>0</td>
+<td>100%</td>
+<td>0:00</td>
+</tr><tr>
+<td><code>bash</code></td>
+<td>1</td>
+<td><span class="err">1</span></td>
+<td>0%</td>
+<td>0:03</td>
+</tr></tbody></table>
+<h2>活动统计</h2>
+<div class="activity"><span class="activity-item"><b>1</b> 上下文压缩</span><span class="activity-item"><b>9.00k</b> 压缩遮蔽 token</span><span class="activity-item"><b>1/1</b> 审批</span><span class="activity-item"><b>1</b> 子 Agent</span><span class="activity-item"><b>1</b> LLM 重试</span></div>
+</section>
+<h2>会话回放</h2>
+<section class="replay">
+<div class="turn-divider"><span>Turn 1</span></div>
+<div class="msg user"><div class="msg-role">用户</div><div class="msg-text">帮我在 ~\src 下新建 hello.ts，然后运行它</div></div>
+<div class="msg assistant"><div class="msg-role">助手 · deepseek-v4-flash</div><details class="fold reasoning"><summary>思维链 (8 chars)</summary><pre>用户要创建文件。</pre></details><div class="tool-call"><span class="tool-badge">⚙ write</span><details class="fold "><summary>参数</summary><pre>{
+  &quot;path&quot;: &quot;~\\src\\hello.ts&quot;,
+  &quot;content&quot;: &quot;console.log(&#39;hi&#39;)&quot;
+}</pre></details></div></div>
+<div class="msg tool"><div class="msg-role">⚙ write</div><details class="fold "><summary>参数</summary><pre>{
+  &quot;path&quot;: &quot;~\\src\\hello.ts&quot;,
+  &quot;content&quot;: &quot;console.log(&#39;hi&#39;)&quot;
+}</pre></details></div>
+<div class="msg result"><div class="msg-role">结果</div><details class="fold "><summary>结果</summary><pre>File written: ~\src\hello.ts</pre></details></div>
+<div class="msg assistant"><div class="msg-role">助手 · deepseek-v4-flash</div><div class="msg-text">已创建 ~\src\hello.ts。</div></div>
+<div class="turn-divider"><span>Turn 2</span></div>
+<div class="msg user"><div class="msg-role">用户</div><div class="msg-text">运行它，顺便看看这个图</div><div class="msg-text">[image · 图片未导出]</div></div>
+<div class="marker">🛡 请求审批: <code>bash</code></div>
+<div class="marker">✅ 已批准</div>
+<div class="msg assistant"><div class="msg-role">助手 · deepseek-v4-flash</div><div class="tool-call"><span class="tool-badge">⚙ bash</span><details class="fold "><summary>参数</summary><pre>{
+  &quot;command&quot;: &quot;node ~\\src\\hello.ts&quot;
+}</pre></details></div></div>
+<div class="msg tool"><div class="msg-role">⚙ bash</div><details class="fold "><summary>参数</summary><pre>{
+  &quot;command&quot;: &quot;node ~\\src\\hello.ts&quot;
+}</pre></details></div>
+<div class="msg result failed"><div class="msg-role">结果 <span class="err">(错误)</span></div><details class="fold "><summary>结果</summary><pre>LONG-OUTPUT-START PLACEHOLDER LONG-OUTPUT-END</pre></details></div>
+<div class="marker">🐳 子 Agent: explorer</div>
+<div class="marker">🗜 上下文压缩 · 9.00k tokens</div>
+</section>
+<footer>
+<div>由 dsh-session-lens 生成 · <a href="https://github.com/bobostudio/dsh-session-lens">github.com/bobostudio/dsh-session-lens</a> · 工具参数/结果已截断</div>
+<div class="privacy">隐私说明：本文件不含系统提示词与内部请求事件；本地路径已脱敏为 ~；图片不导出。</div>
+</footer>
+</main>
+</body>
+</html>

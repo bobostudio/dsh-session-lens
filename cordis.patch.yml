@@ -1,0 +1,5 @@
+# Mount dsh-session-lens: the Node half registers the /session-lens/* routes;
+# the browser half (dsh.client in package.json) contributes the Lens view tab.
+- insert:
+    - id: session-lens
+      name: dsh-session-lens
