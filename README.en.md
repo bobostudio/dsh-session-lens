@@ -38,13 +38,29 @@ dsh plugin --profile web add github:bobostudio/dsh-session-lens
 
 Restart DSH Web, open any session, and click the **Lens** tab next to Chat / Trajectory.
 
+## Preview
+
+These shots were taken from a live DSH Web session (`http://127.0.0.1:17893/`). After you open a session, **Lens** sits next to Chat / Trajectory:
+
+![Lens view: 5-way token breakdown, per-turn timeline, tool stats](docs/screenshots/lens.png)
+
+How to read it:
+
+- **17.6M tokens total**, of which 17.2M is purple cache-read — later turns are riding the prefix cache, not paying the full input again
+- **Per-turn breakdown** shows which round was expensive: turn 4 burned 8.1M input+cache and 46 tool calls; turn 3 finished in 1:14 with 3 calls
+- **Tool stats** are sorted by call count: wall-clock here is dominated by `pwsh` (66 calls / 4m30s); file reads and writes are essentially free
+
+**Export HTML** downloads a single-file report (no JavaScript, opens offline). The in-repo sample below has the same analytics plus a full replay, including a tool error, an approval, and a compaction marker:
+
+![Exported HTML: analytics + session replay](docs/screenshots/export.png)
+
+Clickable samples: [docs/example.html](docs/example.html) · [docs/example.en.html](docs/example.en.html)
+
 ## Usage
 
 1. Open a session → the **Lens** tab shows live analytics
 2. Click **Export HTML** to download the single-file report
 3. Export options (remembered): full tool results (off), path masking (on), export language (zh/en)
-
-Example exports: [docs/example.html](docs/example.html) · [docs/example.en.html](docs/example.en.html)
 
 ## Compatibility
 

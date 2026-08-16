@@ -38,6 +38,24 @@ dsh plugin --profile web add github:bobostudio/dsh-session-lens
 
 重启 DSH Web 后，打开任意会话，点击顶部的「**洞察**」Tab（与 Chat / Trajectory 并列）。
 
+## 效果预览
+
+截图来自本地 DSH Web（`http://127.0.0.1:17893/`）里的真实会话「把聊天按钮换成可爱狗头」。打开会话后，顶部与「对话 / 轨迹」并列的就是 **洞察**：
+
+![洞察视图：token 五段分解、按 Turn 时间线、工具统计](docs/screenshots/lens.png)
+
+怎么读这张图：
+
+- **合计 17.6M token**，紫色「缓存读」占 17.2M——后续 Turn 几乎都在吃前缀缓存，而不是重新付完整输入
+- **按 Turn 分解**一眼看出哪一轮最贵：第 4 轮 8.1M 输入+Cache、46 次工具；第 3 轮则只需 1 分 14 秒、3 次调用
+- **工具统计**按调用次数排序：这次会话的墙钟主要花在 `pwsh`（66 次 / 4 分 30 秒），读改文件本身几乎不耗时
+
+点「**导出 HTML**」得到的单文件报告（零 JavaScript、可离线打开、微信/QQ 直接发送）。下面是仓库里的交互示例，除了同样的统计表，还带会话回放、工具错误、审批和上下文压缩标记：
+
+![导出 HTML：统计 + 会话回放](docs/screenshots/export.png)
+
+完整可点示例：[docs/example.html](docs/example.html) · [English](docs/example.en.html)
+
 ## 使用
 
 1. 打开一个会话 → 点击「洞察」Tab 查看实时分析
@@ -46,8 +64,6 @@ dsh plugin --profile web add github:bobostudio/dsh-session-lens
    - **完整工具结果**：默认关闭（截断至 2000 字符）
    - **路径脱敏**：默认开启
    - **中/English**：导出文件界面语言
-
-示例导出：[docs/example.html](docs/example.html) · [English](docs/example.en.html)
 
 ## 兼容性
 
