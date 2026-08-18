@@ -4,6 +4,8 @@
 
 **Session insights and one-click shareable HTML replay for DeepSeek Harness (DSH).** Generate a deep "health report" for any session, and export it as a **self-contained single-file HTML replay** — opens offline, easy to share, zero external dependencies.
 
+[![dshfind](https://dshfind.com/api/badge/bobostudio/dsh-session-lens)](https://dshfind.com/en/plugins/bobostudio/dsh-session-lens?ref=badge)
+
 > Complements the official Trajectory view: Trajectory shows the raw event stream; Lens adds **aggregated analytics** (token breakdown, per-turn timeline, tool stats) and **sharing**.
 
 ## Features
@@ -60,7 +62,7 @@ Clickable samples: [docs/example.html](docs/example.html) · [docs/example.en.ht
 
 1. Open a session → the **Lens** tab shows live analytics
 2. Click **Export HTML** to download the single-file report
-3. Export options (remembered): full tool results (off), path masking (on), export language (zh/en)
+3. Export options (remembered): full tool results (off), path masking (on), theme (dark / system / light, default dark), export language (zh/en)
 
 ## Compatibility
 
@@ -71,7 +73,7 @@ Targets `@deepseek-ai/dsh >= 0.1.0-rc.6`, `web` profile. DSH is in developer pre
 ```bash
 npm install
 npm run build     # esbuild → lib/ (Node half + client half)
-npm test          # 33 unit/integration tests (node:test, no build needed)
+npm test          # 41 unit/integration tests (node:test, no build needed)
 npm run check     # tsc --noEmit
 ```
 

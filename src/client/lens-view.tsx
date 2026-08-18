@@ -7,6 +7,7 @@ import {
 } from "../analytics.ts";
 import { NS, type LensKey } from "./locales.ts";
 import { ensureLensStyles } from "./styles.ts";
+import type { ExportTheme } from "../export-html.ts";
 
 export interface LensViewProps {
   sessionId: string;
@@ -24,6 +25,7 @@ interface ExportOpts {
   full: boolean;
   mask: boolean;
   lang: "zh" | "en";
+  theme: ExportTheme;
 }
 
 const OPTS_KEY = "dsh-session-lens:export-opts";
@@ -37,12 +39,13 @@ function loadOpts(): ExportOpts {
         full: parsed.full === true,
         mask: parsed.mask !== false,
         lang: parsed.lang === "en" ? "en" : "zh",
+        theme: parsed.theme === "system" || parsed.theme === "light" ? parsed.theme : "dark",
       };
     }
   } catch {
     /* fall through to defaults */
   }
-  return { full: false, mask: true, lang: "zh" };
+  return { full: false, mask: true, lang: "zh", theme: "dark" };
 }
 
 function saveOpts(opts: ExportOpts): void {
@@ -276,7 +279,7 @@ export function LensView({ sessionId, t }: LensViewProps) {
     });
   };
 
-  const exportUrl = `/api/session-lens/export?sessionId=${encodeURIComponent(sessionId)}&lang=${opts.lang}&full=${opts.full ? 1 : 0}&mask=${opts.mask ? 1 : 0}`;
+  const exportUrl = `/api/session-lens/export?sessionId=${encodeURIComponent(sessionId)}&lang=${opts.lang}&full=${opts.full ? 1 : 0}&mask=${opts.mask ? 1 : 0}&theme=${opts.theme}`;
 
   return (
     <div className="lens-root">
@@ -308,6 +311,16 @@ export function LensView({ sessionId, t }: LensViewProps) {
         >
           {t("toolbar.lang")}
         </button>
+        <select
+          className="lens-select"
+          aria-label={t("toolbar.theme")}
+          value={opts.theme}
+          onChange={(event) => updateOpts({ theme: event.target.value as ExportTheme })}
+        >
+          <option value="dark">{t("toolbar.themeDark")}</option>
+          <option value="system">{t("toolbar.themeSystem")}</option>
+          <option value="light">{t("toolbar.themeLight")}</option>
+        </select>
         <button type="button" className="lens-btn" onClick={() => void load()}>
           {t("toolbar.refresh")}
         </button>

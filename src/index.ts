@@ -8,7 +8,7 @@
  *   GET /api/session-lens/analytics?sessionId=<id>
  *       Aggregate model for the Lens view tab.
  *
- *   GET /api/session-lens/export?sessionId=<id>&lang=zh|en&full=0|1&mask=0|1
+ *   GET /api/session-lens/export?sessionId=<id>&lang=zh|en&full=0|1&mask=0|1&theme=dark|light|system
  *       Self-contained, redacted HTML replay (Content-Disposition download).
  *
  * Session events are read through the harness's own services — the live
@@ -22,7 +22,7 @@
 
 import { homedir } from "node:os";
 import { analyzeSession } from "./analytics.ts";
-import { renderSessionHtml } from "./export-html.ts";
+import { renderSessionHtml, type ExportTheme } from "./export-html.ts";
 import type { SessionEvent, SessionHeader } from "./events.ts";
 
 /** Stable Cordis plugin name. */
@@ -211,6 +211,8 @@ async function handleExport(ctx: any, req: any, res: any): Promise<void> {
   const lang = url.searchParams.get("lang") === "en" ? "en" : "zh";
   const full = url.searchParams.get("full") === "1";
   const mask = url.searchParams.get("mask") !== "0";
+  const themeParam = url.searchParams.get("theme");
+  const theme: ExportTheme = themeParam === "system" || themeParam === "light" ? themeParam : "dark";
   try {
     const loaded = await loadSession(ctx, sessionId);
     if (loaded === null) {
@@ -223,6 +225,7 @@ async function handleExport(ctx: any, req: any, res: any): Promise<void> {
       // home (npm-cache, ~/.dsh/…) — mask those to `~` alongside the cwd.
       extraPaths: [homedir()],
       lang,
+      theme,
       maskPaths: mask,
       maxTextLength: full ? null : 2000,
     });

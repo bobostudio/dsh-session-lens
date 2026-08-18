@@ -156,17 +156,19 @@ test("404 for unknown session", async () => {
   assert.equal(res.status, 404);
 });
 
-test("export route: attachment download, redacted, language switch", async () => {
+test("export route: attachment download, redacted, language switch, theme", async () => {
   const { routes } = mount({ sessions: liveSessions });
   const res = mockRes();
   await routes.get("/api/session-lens/export")(
-    mockReq("/api/session-lens/export?sessionId=test-session-001&lang=en&full=1&mask=1"),
+    mockReq("/api/session-lens/export?sessionId=test-session-001&lang=en&full=1&mask=1&theme=dark"),
     res,
   );
   assert.equal(res.status, 200);
   assert.match(res.headers["content-type"], /text\/html/);
   assert.match(res.headers["content-disposition"], /attachment; filename="dsh-session-test-ses\.html"/);
   assert.match(res.body, /Session Insights Report/);
+  assert.match(res.body, /:root\{color-scheme:dark\}/);
+  assert.match(res.body, /body\{background:#14161a/);
   assert.ok(!res.body.includes("SECRET-SYSTEM-PROMPT"));
   // full=1 keeps tool output, mask=1 still masks paths.
   assert.ok(res.body.includes("LONG-OUTPUT-START PLACEHOLDER LONG-OUTPUT-END"));

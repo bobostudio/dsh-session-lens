@@ -30,8 +30,17 @@ import {
   type RedactOptions,
 } from "./redact.ts";
 
+/**
+ * Report theme:
+ * - `dark` — always dark gray-black, independent of the viewer's OS (default).
+ * - `light` — always light.
+ * - `system` — follows the viewer's `prefers-color-scheme`.
+ */
+export type ExportTheme = "system" | "light" | "dark";
+
 export interface ExportOptions extends RedactOptions {
   lang?: "zh" | "en";
+  theme?: ExportTheme;
 }
 
 type Lang = "zh" | "en";
@@ -370,8 +379,8 @@ function renderReplay(events: SessionEvent[], s: Strings): string {
   return out.join("\n");
 }
 
-const CSS = `
-:root{color-scheme:light dark}
+/** Light palette (base rules; shared by every theme). */
+const LIGHT_CSS = `
 *{box-sizing:border-box}
 body{margin:0;padding:32px 16px;font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:#f6f7f9;color:#1c1f24;line-height:1.65}
 main{max-width:860px;margin:0 auto}
@@ -410,7 +419,11 @@ code{background:#eef1f4;border-radius:5px;padding:1px 6px;font-size:12px}
 footer{margin-top:28px;padding-top:14px;border-top:1px solid #e3e7ec;font-size:12px;color:#8a94a1}
 footer a{color:#4c8dff;text-decoration:none}
 .privacy{margin-top:6px}
-@media (prefers-color-scheme:dark){
+`;
+
+/** Dark palette: overrides on top of LIGHT_CSS (same values as the former
+ *  `prefers-color-scheme: dark` block, so "dark" renders identically). */
+const DARK_CSS = `
 body{background:#14161a;color:#dde2e8}
 .chip,table,.msg{background:#1c1f24;border-color:#2c313a}
 th{background:#22262d;color:#a7b0bc}
@@ -425,7 +438,19 @@ code{background:#262b33}
 footer{border-color:#2c313a}
 .token-bar{background:#262b33}
 h2,.meta,.chip-label,.msg-role,.activity{color:#8a94a1}
-}`;
+`;
+
+function buildCss(theme: ExportTheme): string {
+  const root =
+    theme === "dark"
+      ? ":root{color-scheme:dark}"
+      : theme === "light"
+        ? ":root{color-scheme:light}"
+        : ":root{color-scheme:light dark}";
+  if (theme === "light") return `${root}\n${LIGHT_CSS}`;
+  if (theme === "dark") return `${root}\n${LIGHT_CSS}\n${DARK_CSS}`;
+  return `${root}\n${LIGHT_CSS}\n@media (prefers-color-scheme:dark){\n${DARK_CSS}\n}`;
+}
 
 /**
  * Render the full export document. `events` should be the session's expanded
@@ -438,6 +463,7 @@ export function renderSessionHtml(
   options: ExportOptions = {},
 ): string {
   const lang: Lang = options.lang === "en" ? "en" : "zh";
+  const theme: ExportTheme = options.theme ?? "dark";
   const s: Strings = STRINGS[lang];
   const analytics = analyticsInput ?? analyzeSession(events, header);
   const story = redactEvents(filterStoryEvents(events), options);
@@ -455,7 +481,7 @@ export function renderSessionHtml(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:;">
 <title>${esc(title)} · ${esc(s.report)}</title>
-<style>${CSS}</style>
+<style>${buildCss(theme)}</style>
 </head>
 <body>
 <main>

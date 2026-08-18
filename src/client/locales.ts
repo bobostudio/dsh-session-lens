@@ -9,6 +9,10 @@ export type LensKey =
   | "toolbar.fullResults"
   | "toolbar.maskPaths"
   | "toolbar.lang"
+  | "toolbar.theme"
+  | "toolbar.themeSystem"
+  | "toolbar.themeDark"
+  | "toolbar.themeLight"
   | "toolbar.live"
   | "state.loading"
   | "state.error"
@@ -48,6 +52,10 @@ export const zh: Record<LensKey, string> = {
   "toolbar.fullResults": "完整工具结果",
   "toolbar.maskPaths": "路径脱敏",
   "toolbar.lang": "English",
+  "toolbar.theme": "导出主题",
+  "toolbar.themeSystem": "跟随系统",
+  "toolbar.themeDark": "深色",
+  "toolbar.themeLight": "浅色",
   "toolbar.live": "实时",
   "state.loading": "加载会话数据…",
   "state.error": "加载失败",
@@ -88,6 +96,10 @@ export const en: Record<LensKey, string> = {
   "toolbar.fullResults": "Full tool results",
   "toolbar.maskPaths": "Mask paths",
   "toolbar.lang": "中文",
+  "toolbar.theme": "Export theme",
+  "toolbar.themeSystem": "System",
+  "toolbar.themeDark": "Dark",
+  "toolbar.themeLight": "Light",
   "toolbar.live": "live",
   "state.loading": "Loading session data…",
   "state.error": "Failed to load",

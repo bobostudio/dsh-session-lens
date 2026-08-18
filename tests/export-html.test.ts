@@ -11,6 +11,25 @@ const analytics = analyzeSession(events, header);
 
 const html = renderSessionHtml(events, analytics, header, { cwd: header?.cwd });
 
+test("theme: default export is dark (dark palette baked in, no media query)", () => {
+  assert.match(html, /:root\{color-scheme:dark\}/);
+  assert.ok(!html.includes("@media (prefers-color-scheme"));
+  assert.match(html, /body\{background:#14161a/);
+});
+
+test("theme: system keeps prefers-color-scheme adaptation", () => {
+  const out = renderSessionHtml(events, analytics, header, { cwd: header?.cwd, theme: "system" });
+  assert.match(out, /:root\{color-scheme:light dark\}/);
+  assert.match(out, /@media \(prefers-color-scheme:dark\)\{/);
+});
+
+test("theme: light drops the dark overrides", () => {
+  const out = renderSessionHtml(events, analytics, header, { cwd: header?.cwd, theme: "light" });
+  assert.match(out, /:root\{color-scheme:light\}/);
+  assert.ok(!out.includes("@media (prefers-color-scheme"));
+  assert.ok(!out.includes("#14161a"));
+});
+
 test("document skeleton: lang, charset, CSP, title, no external resources", () => {
   assert.ok(html.startsWith("<!doctype html>"));
   assert.match(html, /<html lang="zh-CN">/);
