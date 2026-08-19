@@ -4,8 +4,7 @@
 
 **DeepSeek Harness 会话洞察与一键分享插件**：给任意会话生成"深度体检报告"，并可导出为**自包含单文件 HTML 回放页**——双击离线打开、微信/QQ 直接发送、零外部依赖。
 
-[![dshfind](https://dshfind.com/api/badge/bobostudio/dsh-session-lens)](https://dshfind.com/en/plugins/bobostudio/dsh-session-lens?ref=badge)
-
+[![dshfind](https://dshfind.com/api/card/bobostudio/dsh-session-lens)](https://dshfind.com/en/plugins/bobostudio/dsh-session-lens?ref=badge)
 > 与官方 Trajectory 视图互补：Trajectory 展示原始事件流，Lens 做**聚合分析**（token 分解、turn 时间线、工具统计）+ **对外分享**。
 
 ## 功能
