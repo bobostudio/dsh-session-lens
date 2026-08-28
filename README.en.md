@@ -3,6 +3,7 @@
 [中文](README.md)
 
 [![CI](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml)
+[![DSH target](https://img.shields.io/badge/DSH%20target-0.1.0--rc.6-blue)](#compatibility)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Session insights and one-click shareable HTML replay for DeepSeek Harness (DSH).** Generate a deep "health report" for any session, and export it as a **self-contained single-file HTML replay** — opens offline, easy to share, zero external dependencies.

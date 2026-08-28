@@ -3,6 +3,7 @@
 [English](README.en.md)
 
 [![CI](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml)
+[![DSH 适配](https://img.shields.io/badge/DSH%20适配-0.1.0--rc.6-blue)](#兼容性)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **DeepSeek Harness 会话洞察与一键分享插件**：给任意会话生成"深度体检报告"，并可导出为**自包含单文件 HTML 回放页**——双击离线打开、微信/QQ 直接发送、零外部依赖。
