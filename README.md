@@ -2,6 +2,9 @@
 
 [English](README.en.md)
 
+[![CI](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **DeepSeek Harness 会话洞察与一键分享插件**：给任意会话生成"深度体检报告"，并可导出为**自包含单文件 HTML 回放页**——双击离线打开、微信/QQ 直接发送、零外部依赖。
 
 [![dshfind](https://dshfind.com/api/card/bobostudio/dsh-session-lens)](https://dshfind.com/en/plugins/bobostudio/dsh-session-lens?ref=badge)
@@ -76,7 +79,7 @@ dsh plugin --profile web add github:bobostudio/dsh-session-lens
 ```bash
 npm install
 npm run build     # esbuild → lib/（Node half + client half）
-npm test          # 41 个单元/集成测试（node:test，无需构建）
+npm test          # 44 个单元/集成测试（node:test，无需构建）
 npm run check     # tsc --noEmit
 ```
 

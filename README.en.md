@@ -2,6 +2,9 @@
 
 [中文](README.md)
 
+[![CI](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/bobostudio/dsh-session-lens/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Session insights and one-click shareable HTML replay for DeepSeek Harness (DSH).** Generate a deep "health report" for any session, and export it as a **self-contained single-file HTML replay** — opens offline, easy to share, zero external dependencies.
 
 [![dshfind](https://dshfind.com/api/badge/bobostudio/dsh-session-lens)](https://dshfind.com/en/plugins/bobostudio/dsh-session-lens?ref=badge)
@@ -73,7 +76,7 @@ Targets `@deepseek-ai/dsh >= 0.1.0-rc.6`, `web` profile. DSH is in developer pre
 ```bash
 npm install
 npm run build     # esbuild → lib/ (Node half + client half)
-npm test          # 41 unit/integration tests (node:test, no build needed)
+npm test          # 44 unit/integration tests (node:test, no build needed)
 npm run check     # tsc --noEmit
 ```
 
